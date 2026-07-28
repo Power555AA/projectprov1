@@ -75,7 +75,7 @@ export function FilterBar() {
         </SelectContent>
       </Select>
 
-      <Button variant="outline" size="sm" className="ml-auto h-9 gap-2">
+      <Button variant="outline" size="sm" className="ml-auto h-9 gap-2" onClick={handleExport}>
         <Download className="size-4" />
         Export
       </Button>
