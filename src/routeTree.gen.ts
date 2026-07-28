@@ -11,10 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkOrdersRouteImport } from './routes/work-orders'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PlanningRouteImport } from './routes/planning'
 import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as ItemsRouteImport } from './routes/items'
 import { Route as IpcsRouteImport } from './routes/ipcs'
 import { Route as InspectionRequestsRouteImport } from './routes/inspection-requests'
+import { Route as DrawingsRouteImport } from './routes/drawings'
+import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as BidsRouteImport } from './routes/bids'
 import { Route as BidProposalsRouteImport } from './routes/bid-proposals'
 import { Route as ApprovalsRouteImport } from './routes/approvals'
@@ -28,6 +31,11 @@ const WorkOrdersRoute = WorkOrdersRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanningRoute = PlanningRouteImport.update({
+  id: '/planning',
+  path: '/planning',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MaterialsRoute = MaterialsRouteImport.update({
@@ -48,6 +56,16 @@ const IpcsRoute = IpcsRouteImport.update({
 const InspectionRequestsRoute = InspectionRequestsRouteImport.update({
   id: '/inspection-requests',
   path: '/inspection-requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrawingsRoute = DrawingsRouteImport.update({
+  id: '/drawings',
+  path: '/drawings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BidsRoute = BidsRouteImport.update({
@@ -76,10 +94,13 @@ export interface FileRoutesByFullPath {
   '/approvals': typeof ApprovalsRoute
   '/bid-proposals': typeof BidProposalsRoute
   '/bids': typeof BidsRoute
+  '/documents': typeof DocumentsRoute
+  '/drawings': typeof DrawingsRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
   '/materials': typeof MaterialsRoute
+  '/planning': typeof PlanningRoute
   '/projects': typeof ProjectsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
@@ -88,10 +109,13 @@ export interface FileRoutesByTo {
   '/approvals': typeof ApprovalsRoute
   '/bid-proposals': typeof BidProposalsRoute
   '/bids': typeof BidsRoute
+  '/documents': typeof DocumentsRoute
+  '/drawings': typeof DrawingsRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
   '/materials': typeof MaterialsRoute
+  '/planning': typeof PlanningRoute
   '/projects': typeof ProjectsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
@@ -101,10 +125,13 @@ export interface FileRoutesById {
   '/approvals': typeof ApprovalsRoute
   '/bid-proposals': typeof BidProposalsRoute
   '/bids': typeof BidsRoute
+  '/documents': typeof DocumentsRoute
+  '/drawings': typeof DrawingsRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
   '/materials': typeof MaterialsRoute
+  '/planning': typeof PlanningRoute
   '/projects': typeof ProjectsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
@@ -115,10 +142,13 @@ export interface FileRouteTypes {
     | '/approvals'
     | '/bid-proposals'
     | '/bids'
+    | '/documents'
+    | '/drawings'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
     | '/materials'
+    | '/planning'
     | '/projects'
     | '/work-orders'
   fileRoutesByTo: FileRoutesByTo
@@ -127,10 +157,13 @@ export interface FileRouteTypes {
     | '/approvals'
     | '/bid-proposals'
     | '/bids'
+    | '/documents'
+    | '/drawings'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
     | '/materials'
+    | '/planning'
     | '/projects'
     | '/work-orders'
   id:
@@ -139,10 +172,13 @@ export interface FileRouteTypes {
     | '/approvals'
     | '/bid-proposals'
     | '/bids'
+    | '/documents'
+    | '/drawings'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
     | '/materials'
+    | '/planning'
     | '/projects'
     | '/work-orders'
   fileRoutesById: FileRoutesById
@@ -152,10 +188,13 @@ export interface RootRouteChildren {
   ApprovalsRoute: typeof ApprovalsRoute
   BidProposalsRoute: typeof BidProposalsRoute
   BidsRoute: typeof BidsRoute
+  DocumentsRoute: typeof DocumentsRoute
+  DrawingsRoute: typeof DrawingsRoute
   InspectionRequestsRoute: typeof InspectionRequestsRoute
   IpcsRoute: typeof IpcsRoute
   ItemsRoute: typeof ItemsRoute
   MaterialsRoute: typeof MaterialsRoute
+  PlanningRoute: typeof PlanningRoute
   ProjectsRoute: typeof ProjectsRoute
   WorkOrdersRoute: typeof WorkOrdersRoute
 }
@@ -174,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planning': {
+      id: '/planning'
+      path: '/planning'
+      fullPath: '/planning'
+      preLoaderRoute: typeof PlanningRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/materials': {
@@ -202,6 +248,20 @@ declare module '@tanstack/react-router' {
       path: '/inspection-requests'
       fullPath: '/inspection-requests'
       preLoaderRoute: typeof InspectionRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drawings': {
+      id: '/drawings'
+      path: '/drawings'
+      fullPath: '/drawings'
+      preLoaderRoute: typeof DrawingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bids': {
@@ -240,10 +300,13 @@ const rootRouteChildren: RootRouteChildren = {
   ApprovalsRoute: ApprovalsRoute,
   BidProposalsRoute: BidProposalsRoute,
   BidsRoute: BidsRoute,
+  DocumentsRoute: DocumentsRoute,
+  DrawingsRoute: DrawingsRoute,
   InspectionRequestsRoute: InspectionRequestsRoute,
   IpcsRoute: IpcsRoute,
   ItemsRoute: ItemsRoute,
   MaterialsRoute: MaterialsRoute,
+  PlanningRoute: PlanningRoute,
   ProjectsRoute: ProjectsRoute,
   WorkOrdersRoute: WorkOrdersRoute,
 }
