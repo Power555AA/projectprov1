@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkOrdersRouteImport } from './routes/work-orders'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as MaterialsRouteImport } from './routes/materials'
+import { Route as ItemsRouteImport } from './routes/items'
+import { Route as IpcsRouteImport } from './routes/ipcs'
+import { Route as InspectionRequestsRouteImport } from './routes/inspection-requests'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WorkOrdersRoute = WorkOrdersRouteImport.update({
@@ -23,6 +27,26 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MaterialsRoute = MaterialsRouteImport.update({
+  id: '/materials',
+  path: '/materials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ItemsRoute = ItemsRouteImport.update({
+  id: '/items',
+  path: '/items',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IpcsRoute = IpcsRouteImport.update({
+  id: '/ipcs',
+  path: '/ipcs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InspectionRequestsRoute = InspectionRequestsRouteImport.update({
+  id: '/inspection-requests',
+  path: '/inspection-requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +55,68 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/inspection-requests': typeof InspectionRequestsRoute
+  '/ipcs': typeof IpcsRoute
+  '/items': typeof ItemsRoute
+  '/materials': typeof MaterialsRoute
   '/projects': typeof ProjectsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/inspection-requests': typeof InspectionRequestsRoute
+  '/ipcs': typeof IpcsRoute
+  '/items': typeof ItemsRoute
+  '/materials': typeof MaterialsRoute
   '/projects': typeof ProjectsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/inspection-requests': typeof InspectionRequestsRoute
+  '/ipcs': typeof IpcsRoute
+  '/items': typeof ItemsRoute
+  '/materials': typeof MaterialsRoute
   '/projects': typeof ProjectsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects' | '/work-orders'
+  fullPaths:
+    | '/'
+    | '/inspection-requests'
+    | '/ipcs'
+    | '/items'
+    | '/materials'
+    | '/projects'
+    | '/work-orders'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects' | '/work-orders'
-  id: '__root__' | '/' | '/projects' | '/work-orders'
+  to:
+    | '/'
+    | '/inspection-requests'
+    | '/ipcs'
+    | '/items'
+    | '/materials'
+    | '/projects'
+    | '/work-orders'
+  id:
+    | '__root__'
+    | '/'
+    | '/inspection-requests'
+    | '/ipcs'
+    | '/items'
+    | '/materials'
+    | '/projects'
+    | '/work-orders'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  InspectionRequestsRoute: typeof InspectionRequestsRoute
+  IpcsRoute: typeof IpcsRoute
+  ItemsRoute: typeof ItemsRoute
+  MaterialsRoute: typeof MaterialsRoute
   ProjectsRoute: typeof ProjectsRoute
   WorkOrdersRoute: typeof WorkOrdersRoute
 }
@@ -75,6 +137,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/materials': {
+      id: '/materials'
+      path: '/materials'
+      fullPath: '/materials'
+      preLoaderRoute: typeof MaterialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/items': {
+      id: '/items'
+      path: '/items'
+      fullPath: '/items'
+      preLoaderRoute: typeof ItemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ipcs': {
+      id: '/ipcs'
+      path: '/ipcs'
+      fullPath: '/ipcs'
+      preLoaderRoute: typeof IpcsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inspection-requests': {
+      id: '/inspection-requests'
+      path: '/inspection-requests'
+      fullPath: '/inspection-requests'
+      preLoaderRoute: typeof InspectionRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +177,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  InspectionRequestsRoute: InspectionRequestsRoute,
+  IpcsRoute: IpcsRoute,
+  ItemsRoute: ItemsRoute,
+  MaterialsRoute: MaterialsRoute,
   ProjectsRoute: ProjectsRoute,
   WorkOrdersRoute: WorkOrdersRoute,
 }
