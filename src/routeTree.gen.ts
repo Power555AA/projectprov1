@@ -15,6 +15,9 @@ import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as ItemsRouteImport } from './routes/items'
 import { Route as IpcsRouteImport } from './routes/ipcs'
 import { Route as InspectionRequestsRouteImport } from './routes/inspection-requests'
+import { Route as BidsRouteImport } from './routes/bids'
+import { Route as BidProposalsRouteImport } from './routes/bid-proposals'
+import { Route as ApprovalsRouteImport } from './routes/approvals'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WorkOrdersRoute = WorkOrdersRouteImport.update({
@@ -47,6 +50,21 @@ const InspectionRequestsRoute = InspectionRequestsRouteImport.update({
   path: '/inspection-requests',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BidsRoute = BidsRouteImport.update({
+  id: '/bids',
+  path: '/bids',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BidProposalsRoute = BidProposalsRouteImport.update({
+  id: '/bid-proposals',
+  path: '/bid-proposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApprovalsRoute = ApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +73,9 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/approvals': typeof ApprovalsRoute
+  '/bid-proposals': typeof BidProposalsRoute
+  '/bids': typeof BidsRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
@@ -64,6 +85,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/approvals': typeof ApprovalsRoute
+  '/bid-proposals': typeof BidProposalsRoute
+  '/bids': typeof BidsRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
@@ -74,6 +98,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/approvals': typeof ApprovalsRoute
+  '/bid-proposals': typeof BidProposalsRoute
+  '/bids': typeof BidsRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
@@ -85,6 +112,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/approvals'
+    | '/bid-proposals'
+    | '/bids'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
@@ -94,6 +124,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/approvals'
+    | '/bid-proposals'
+    | '/bids'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
@@ -103,6 +136,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/approvals'
+    | '/bid-proposals'
+    | '/bids'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
@@ -113,6 +149,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApprovalsRoute: typeof ApprovalsRoute
+  BidProposalsRoute: typeof BidProposalsRoute
+  BidsRoute: typeof BidsRoute
   InspectionRequestsRoute: typeof InspectionRequestsRoute
   IpcsRoute: typeof IpcsRoute
   ItemsRoute: typeof ItemsRoute
@@ -165,6 +204,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InspectionRequestsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bids': {
+      id: '/bids'
+      path: '/bids'
+      fullPath: '/bids'
+      preLoaderRoute: typeof BidsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bid-proposals': {
+      id: '/bid-proposals'
+      path: '/bid-proposals'
+      fullPath: '/bid-proposals'
+      preLoaderRoute: typeof BidProposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/approvals': {
+      id: '/approvals'
+      path: '/approvals'
+      fullPath: '/approvals'
+      preLoaderRoute: typeof ApprovalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +237,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApprovalsRoute: ApprovalsRoute,
+  BidProposalsRoute: BidProposalsRoute,
+  BidsRoute: BidsRoute,
   InspectionRequestsRoute: InspectionRequestsRoute,
   IpcsRoute: IpcsRoute,
   ItemsRoute: ItemsRoute,
