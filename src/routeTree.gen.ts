@@ -10,12 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkOrdersRouteImport } from './routes/work-orders'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PlanningRouteImport } from './routes/planning'
 import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as ItemsRouteImport } from './routes/items'
 import { Route as IpcsRouteImport } from './routes/ipcs'
 import { Route as InspectionRequestsRouteImport } from './routes/inspection-requests'
+import { Route as HseRouteImport } from './routes/hse'
 import { Route as DrawingsRouteImport } from './routes/drawings'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as BidsRouteImport } from './routes/bids'
@@ -26,6 +29,16 @@ import { Route as IndexRouteImport } from './routes/index'
 const WorkOrdersRoute = WorkOrdersRouteImport.update({
   id: '/work-orders',
   path: '/work-orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -56,6 +69,11 @@ const IpcsRoute = IpcsRouteImport.update({
 const InspectionRequestsRoute = InspectionRequestsRouteImport.update({
   id: '/inspection-requests',
   path: '/inspection-requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HseRoute = HseRouteImport.update({
+  id: '/hse',
+  path: '/hse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DrawingsRoute = DrawingsRouteImport.update({
@@ -96,12 +114,15 @@ export interface FileRoutesByFullPath {
   '/bids': typeof BidsRoute
   '/documents': typeof DocumentsRoute
   '/drawings': typeof DrawingsRoute
+  '/hse': typeof HseRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
   '/materials': typeof MaterialsRoute
   '/planning': typeof PlanningRoute
   '/projects': typeof ProjectsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRoutesByTo {
@@ -111,12 +132,15 @@ export interface FileRoutesByTo {
   '/bids': typeof BidsRoute
   '/documents': typeof DocumentsRoute
   '/drawings': typeof DrawingsRoute
+  '/hse': typeof HseRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
   '/materials': typeof MaterialsRoute
   '/planning': typeof PlanningRoute
   '/projects': typeof ProjectsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRoutesById {
@@ -127,12 +151,15 @@ export interface FileRoutesById {
   '/bids': typeof BidsRoute
   '/documents': typeof DocumentsRoute
   '/drawings': typeof DrawingsRoute
+  '/hse': typeof HseRoute
   '/inspection-requests': typeof InspectionRequestsRoute
   '/ipcs': typeof IpcsRoute
   '/items': typeof ItemsRoute
   '/materials': typeof MaterialsRoute
   '/planning': typeof PlanningRoute
   '/projects': typeof ProjectsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRouteTypes {
@@ -144,12 +171,15 @@ export interface FileRouteTypes {
     | '/bids'
     | '/documents'
     | '/drawings'
+    | '/hse'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
     | '/materials'
     | '/planning'
     | '/projects'
+    | '/reports'
+    | '/settings'
     | '/work-orders'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -159,12 +189,15 @@ export interface FileRouteTypes {
     | '/bids'
     | '/documents'
     | '/drawings'
+    | '/hse'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
     | '/materials'
     | '/planning'
     | '/projects'
+    | '/reports'
+    | '/settings'
     | '/work-orders'
   id:
     | '__root__'
@@ -174,12 +207,15 @@ export interface FileRouteTypes {
     | '/bids'
     | '/documents'
     | '/drawings'
+    | '/hse'
     | '/inspection-requests'
     | '/ipcs'
     | '/items'
     | '/materials'
     | '/planning'
     | '/projects'
+    | '/reports'
+    | '/settings'
     | '/work-orders'
   fileRoutesById: FileRoutesById
 }
@@ -190,12 +226,15 @@ export interface RootRouteChildren {
   BidsRoute: typeof BidsRoute
   DocumentsRoute: typeof DocumentsRoute
   DrawingsRoute: typeof DrawingsRoute
+  HseRoute: typeof HseRoute
   InspectionRequestsRoute: typeof InspectionRequestsRoute
   IpcsRoute: typeof IpcsRoute
   ItemsRoute: typeof ItemsRoute
   MaterialsRoute: typeof MaterialsRoute
   PlanningRoute: typeof PlanningRoute
   ProjectsRoute: typeof ProjectsRoute
+  ReportsRoute: typeof ReportsRoute
+  SettingsRoute: typeof SettingsRoute
   WorkOrdersRoute: typeof WorkOrdersRoute
 }
 
@@ -206,6 +245,20 @@ declare module '@tanstack/react-router' {
       path: '/work-orders'
       fullPath: '/work-orders'
       preLoaderRoute: typeof WorkOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -248,6 +301,13 @@ declare module '@tanstack/react-router' {
       path: '/inspection-requests'
       fullPath: '/inspection-requests'
       preLoaderRoute: typeof InspectionRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hse': {
+      id: '/hse'
+      path: '/hse'
+      fullPath: '/hse'
+      preLoaderRoute: typeof HseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/drawings': {
@@ -302,12 +362,15 @@ const rootRouteChildren: RootRouteChildren = {
   BidsRoute: BidsRoute,
   DocumentsRoute: DocumentsRoute,
   DrawingsRoute: DrawingsRoute,
+  HseRoute: HseRoute,
   InspectionRequestsRoute: InspectionRequestsRoute,
   IpcsRoute: IpcsRoute,
   ItemsRoute: ItemsRoute,
   MaterialsRoute: MaterialsRoute,
   PlanningRoute: PlanningRoute,
   ProjectsRoute: ProjectsRoute,
+  ReportsRoute: ReportsRoute,
+  SettingsRoute: SettingsRoute,
   WorkOrdersRoute: WorkOrdersRoute,
 }
 export const routeTree = rootRouteImport
