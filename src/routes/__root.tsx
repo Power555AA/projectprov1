@@ -16,6 +16,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Topbar } from "@/components/layout/topbar";
 import { ErpProvider } from "@/lib/erp-context";
+import { Toaster } from "@/components/ui/sonner";
 
 
 function NotFoundComponent() {
@@ -166,6 +167,7 @@ function RootComponent() {
               </main>
             </SidebarInset>
           </div>
+          <Toaster position="bottom-right" />
         </SidebarProvider>
       </ErpProvider>
     </QueryClientProvider>
