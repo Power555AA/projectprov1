@@ -1,24 +1,59 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FilterBar } from "@/components/layout/filter-bar";
+import { KpiRow } from "@/components/dashboard/kpi-row";
+import { FinancialProgressChart, MonthlyWorkChart } from "@/components/dashboard/charts";
+import { ProjectTable } from "@/components/dashboard/project-table";
+import { ActivityFeed, ApprovalsPanel, PortfolioStats } from "@/components/dashboard/side-panels";
+import { MaterialConsumption } from "@/components/dashboard/material-consumption";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Dashboard — EZY PM Construction Portal" },
+      {
+        name: "description",
+        content:
+          "Live view of contract value, work done, certified IPCs, approvals and material consumption across all construction sites.",
+      },
+      { property: "og:title", content: "Dashboard — EZY PM Construction Portal" },
+      {
+        property: "og:description",
+        content: "Contract, execution and certification KPIs for every project in one screen.",
+      },
+    ],
+  }),
+  component: Dashboard,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Dashboard() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <FilterBar />
+      <div className="space-y-4 p-4">
+        <div>
+          <h1 className="font-display text-2xl font-bold">Portfolio Dashboard</h1>
+          <p className="text-sm text-muted-foreground">
+            Bid → Award → Plan → Execute → Inspect → Certify → Get paid
+          </p>
+        </div>
+
+        <KpiRow />
+
+        <div className="grid gap-4 xl:grid-cols-3">
+          <div className="space-y-4 xl:col-span-2">
+            <FinancialProgressChart />
+            <MonthlyWorkChart />
+            <ProjectTable />
+          </div>
+          <div className="space-y-4">
+            <PortfolioStats />
+            <ApprovalsPanel />
+            <ActivityFeed />
+          </div>
+        </div>
+
+        <MaterialConsumption />
+      </div>
+    </>
   );
 }

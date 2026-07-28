@@ -9,8 +9,98 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkOrdersRouteImport } from './routes/work-orders'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PlanningRouteImport } from './routes/planning'
+import { Route as MaterialsRouteImport } from './routes/materials'
+import { Route as ItemsRouteImport } from './routes/items'
+import { Route as IpcsRouteImport } from './routes/ipcs'
+import { Route as InspectionRequestsRouteImport } from './routes/inspection-requests'
+import { Route as HseRouteImport } from './routes/hse'
+import { Route as DrawingsRouteImport } from './routes/drawings'
+import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as BidsRouteImport } from './routes/bids'
+import { Route as BidProposalsRouteImport } from './routes/bid-proposals'
+import { Route as ApprovalsRouteImport } from './routes/approvals'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WorkOrdersRoute = WorkOrdersRouteImport.update({
+  id: '/work-orders',
+  path: '/work-orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanningRoute = PlanningRouteImport.update({
+  id: '/planning',
+  path: '/planning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaterialsRoute = MaterialsRouteImport.update({
+  id: '/materials',
+  path: '/materials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ItemsRoute = ItemsRouteImport.update({
+  id: '/items',
+  path: '/items',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IpcsRoute = IpcsRouteImport.update({
+  id: '/ipcs',
+  path: '/ipcs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InspectionRequestsRoute = InspectionRequestsRouteImport.update({
+  id: '/inspection-requests',
+  path: '/inspection-requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HseRoute = HseRouteImport.update({
+  id: '/hse',
+  path: '/hse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrawingsRoute = DrawingsRouteImport.update({
+  id: '/drawings',
+  path: '/drawings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BidsRoute = BidsRouteImport.update({
+  id: '/bids',
+  path: '/bids',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BidProposalsRoute = BidProposalsRouteImport.update({
+  id: '/bid-proposals',
+  path: '/bid-proposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApprovalsRoute = ApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +109,242 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/approvals': typeof ApprovalsRoute
+  '/bid-proposals': typeof BidProposalsRoute
+  '/bids': typeof BidsRoute
+  '/documents': typeof DocumentsRoute
+  '/drawings': typeof DrawingsRoute
+  '/hse': typeof HseRoute
+  '/inspection-requests': typeof InspectionRequestsRoute
+  '/ipcs': typeof IpcsRoute
+  '/items': typeof ItemsRoute
+  '/materials': typeof MaterialsRoute
+  '/planning': typeof PlanningRoute
+  '/projects': typeof ProjectsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
+  '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/approvals': typeof ApprovalsRoute
+  '/bid-proposals': typeof BidProposalsRoute
+  '/bids': typeof BidsRoute
+  '/documents': typeof DocumentsRoute
+  '/drawings': typeof DrawingsRoute
+  '/hse': typeof HseRoute
+  '/inspection-requests': typeof InspectionRequestsRoute
+  '/ipcs': typeof IpcsRoute
+  '/items': typeof ItemsRoute
+  '/materials': typeof MaterialsRoute
+  '/planning': typeof PlanningRoute
+  '/projects': typeof ProjectsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
+  '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/approvals': typeof ApprovalsRoute
+  '/bid-proposals': typeof BidProposalsRoute
+  '/bids': typeof BidsRoute
+  '/documents': typeof DocumentsRoute
+  '/drawings': typeof DrawingsRoute
+  '/hse': typeof HseRoute
+  '/inspection-requests': typeof InspectionRequestsRoute
+  '/ipcs': typeof IpcsRoute
+  '/items': typeof ItemsRoute
+  '/materials': typeof MaterialsRoute
+  '/planning': typeof PlanningRoute
+  '/projects': typeof ProjectsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
+  '/work-orders': typeof WorkOrdersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/approvals'
+    | '/bid-proposals'
+    | '/bids'
+    | '/documents'
+    | '/drawings'
+    | '/hse'
+    | '/inspection-requests'
+    | '/ipcs'
+    | '/items'
+    | '/materials'
+    | '/planning'
+    | '/projects'
+    | '/reports'
+    | '/settings'
+    | '/work-orders'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/approvals'
+    | '/bid-proposals'
+    | '/bids'
+    | '/documents'
+    | '/drawings'
+    | '/hse'
+    | '/inspection-requests'
+    | '/ipcs'
+    | '/items'
+    | '/materials'
+    | '/planning'
+    | '/projects'
+    | '/reports'
+    | '/settings'
+    | '/work-orders'
+  id:
+    | '__root__'
+    | '/'
+    | '/approvals'
+    | '/bid-proposals'
+    | '/bids'
+    | '/documents'
+    | '/drawings'
+    | '/hse'
+    | '/inspection-requests'
+    | '/ipcs'
+    | '/items'
+    | '/materials'
+    | '/planning'
+    | '/projects'
+    | '/reports'
+    | '/settings'
+    | '/work-orders'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApprovalsRoute: typeof ApprovalsRoute
+  BidProposalsRoute: typeof BidProposalsRoute
+  BidsRoute: typeof BidsRoute
+  DocumentsRoute: typeof DocumentsRoute
+  DrawingsRoute: typeof DrawingsRoute
+  HseRoute: typeof HseRoute
+  InspectionRequestsRoute: typeof InspectionRequestsRoute
+  IpcsRoute: typeof IpcsRoute
+  ItemsRoute: typeof ItemsRoute
+  MaterialsRoute: typeof MaterialsRoute
+  PlanningRoute: typeof PlanningRoute
+  ProjectsRoute: typeof ProjectsRoute
+  ReportsRoute: typeof ReportsRoute
+  SettingsRoute: typeof SettingsRoute
+  WorkOrdersRoute: typeof WorkOrdersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/work-orders': {
+      id: '/work-orders'
+      path: '/work-orders'
+      fullPath: '/work-orders'
+      preLoaderRoute: typeof WorkOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planning': {
+      id: '/planning'
+      path: '/planning'
+      fullPath: '/planning'
+      preLoaderRoute: typeof PlanningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/materials': {
+      id: '/materials'
+      path: '/materials'
+      fullPath: '/materials'
+      preLoaderRoute: typeof MaterialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/items': {
+      id: '/items'
+      path: '/items'
+      fullPath: '/items'
+      preLoaderRoute: typeof ItemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ipcs': {
+      id: '/ipcs'
+      path: '/ipcs'
+      fullPath: '/ipcs'
+      preLoaderRoute: typeof IpcsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inspection-requests': {
+      id: '/inspection-requests'
+      path: '/inspection-requests'
+      fullPath: '/inspection-requests'
+      preLoaderRoute: typeof InspectionRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hse': {
+      id: '/hse'
+      path: '/hse'
+      fullPath: '/hse'
+      preLoaderRoute: typeof HseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drawings': {
+      id: '/drawings'
+      path: '/drawings'
+      fullPath: '/drawings'
+      preLoaderRoute: typeof DrawingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bids': {
+      id: '/bids'
+      path: '/bids'
+      fullPath: '/bids'
+      preLoaderRoute: typeof BidsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bid-proposals': {
+      id: '/bid-proposals'
+      path: '/bid-proposals'
+      fullPath: '/bid-proposals'
+      preLoaderRoute: typeof BidProposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/approvals': {
+      id: '/approvals'
+      path: '/approvals'
+      fullPath: '/approvals'
+      preLoaderRoute: typeof ApprovalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +357,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApprovalsRoute: ApprovalsRoute,
+  BidProposalsRoute: BidProposalsRoute,
+  BidsRoute: BidsRoute,
+  DocumentsRoute: DocumentsRoute,
+  DrawingsRoute: DrawingsRoute,
+  HseRoute: HseRoute,
+  InspectionRequestsRoute: InspectionRequestsRoute,
+  IpcsRoute: IpcsRoute,
+  ItemsRoute: ItemsRoute,
+  MaterialsRoute: MaterialsRoute,
+  PlanningRoute: PlanningRoute,
+  ProjectsRoute: ProjectsRoute,
+  ReportsRoute: ReportsRoute,
+  SettingsRoute: SettingsRoute,
+  WorkOrdersRoute: WorkOrdersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
