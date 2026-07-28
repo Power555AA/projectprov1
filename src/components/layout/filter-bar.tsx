@@ -1,4 +1,7 @@
 import { Download } from "lucide-react";
+import { useRouterState } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { exportVisibleTables } from "@/lib/export-csv";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -11,6 +14,21 @@ import { useErp } from "@/lib/erp-context";
 
 export function FilterBar() {
   const { filters, setFilters, sites, projectOptions } = useErp();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  const handleExport = () => {
+    const heading =
+      document.querySelector("main h1")?.textContent?.trim() ||
+      (pathname === "/" ? "Dashboard" : pathname.replace("/", "").replace(/-/g, " "));
+    const siteName = filters.siteId === "all" ? "All sites" : sites.find((s) => s.id === filters.siteId)?.name;
+    const projectName =
+      filters.projectId === "all"
+        ? "All projects"
+        : projectOptions.find((p) => p.id === filters.projectId)?.code;
+    const rows = exportVisibleTables(heading, `${siteName} · ${projectName} · ${filters.range.toUpperCase()}`);
+    toast.success(rows ? `Exported ${rows} rows to CSV` : "Exported current view to CSV");
+  };
+
 
   return (
     <div className="sticky top-14 z-20 flex flex-wrap items-center gap-2 border-b border-border bg-background/95 px-4 py-3 backdrop-blur">
@@ -57,7 +75,7 @@ export function FilterBar() {
         </SelectContent>
       </Select>
 
-      <Button variant="outline" size="sm" className="ml-auto h-9 gap-2">
+      <Button variant="outline" size="sm" className="ml-auto h-9 gap-2" onClick={handleExport}>
         <Download className="size-4" />
         Export
       </Button>
