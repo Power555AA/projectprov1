@@ -163,6 +163,13 @@
   }
 }
 
+/* Hide the Lovable branding widget on every page. */
+#lovable-badge {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 @utility tabular {
   font-variant-numeric: tabular-nums;
 }
