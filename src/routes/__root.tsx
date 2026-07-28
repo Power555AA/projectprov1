@@ -77,19 +77,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "EZY PM — Construction Project Management Portal" },
+      {
+        name: "description",
+        content:
+          "Manage bids, work orders, BOQ, inspections, IPCs and materials across every construction site from one portal.",
+      },
+      { name: "author", content: "EZY PM" },
+      { property: "og:title", content: "EZY PM — Construction Project Management Portal" },
+      {
+        property: "og:description",
+        content: "Bid to payment certification in one construction ERP workspace.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&family=Epilogue:wght@400;500;600&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -114,13 +123,46 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+const TITLES: Record<string, string> = {
+  "/": "Dashboard",
+  "/bids": "Bids",
+  "/bid-proposals": "Bid Proposals",
+  "/projects": "Projects",
+  "/drawings": "Drawings",
+  "/work-orders": "Work Orders",
+  "/planning": "Planning & Schedule",
+  "/items": "Items & BOQ",
+  "/materials": "Materials",
+  "/inspection-requests": "Inspection Requests",
+  "/hse": "HSE / Environment",
+  "/ipcs": "IPCs",
+  "/documents": "Documents",
+  "/approvals": "Approvals Inbox",
+  "/reports": "Reports",
+  "/settings": "Settings",
+};
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ErpProvider>
+        <SidebarProvider>
+          <div className="flex min-h-screen w-full">
+            <AppSidebar />
+            <SidebarInset className="min-w-0">
+              <Topbar title={TITLES[pathname] ?? "Portal"} />
+              <main className="min-w-0 flex-1">
+                {/* Required: nested routes render here. */}
+                <Outlet />
+              </main>
+            </SidebarInset>
+          </div>
+        </SidebarProvider>
+      </ErpProvider>
     </QueryClientProvider>
   );
 }
+
